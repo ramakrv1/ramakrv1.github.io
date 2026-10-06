@@ -1,0 +1,13 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connect Tesla</title>
+<style>body{font-family:system-ui,sans-serif;max-width:560px;margin:40px auto;padding:0 16px;line-height:1.5}input{width:100%;padding:10px;font-size:16px;box-sizing:border-box}button{margin-top:12px;padding:12px 18px;font-size:16px;background:#e31937;color:#fff;border:0;border-radius:6px;cursor:pointer}</style></head>
+<body><h2>Connect your Tesla account</h2>
+<p>Paste the client ID from your app on developer.tesla.com, then press the button. It stays in your browser and is only used to build the Tesla sign-in link.</p>
+<input id="cid" placeholder="Client ID" autocomplete="off">
+<button onclick="go()">Sign in with Tesla</button>
+<script>
+function go(){var c=document.getElementById('cid').value.trim();if(!c){alert('Paste your client ID first');return;}
+var s=Math.random().toString(36).slice(2)+Date.now().toString(36);
+var p=new URLSearchParams({response_type:'code',client_id:c,redirect_uri:'https://ramakrv1.github.io/callback',scope:'openid offline_access user_data vehicle_device_data vehicle_location vehicle_cmds vehicle_charging_cmds',state:s,locale:'en-AU',prompt_missing_scopes:'true'});
+location.href='https://auth.tesla.com/oauth2/v3/authorize?'+p.toString();}
+</script></body></html>
